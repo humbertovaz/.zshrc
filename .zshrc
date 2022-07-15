@@ -105,8 +105,16 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)               # Include hidden files.
 
+# Bind keys
 bindkey "[D" backward-word
 bindkey "[C" forward-word
 bindkey '^?' backward-kill-word
+
+# Java Settings
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# Priority for certain processes
+alias priority_for_simulator="renice -n -20 -p $(pgrep Simulator$)"
